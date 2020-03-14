@@ -35,6 +35,9 @@
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href='dashboard.php'>Dashboard</a>
+		<a href='events.php'>Events</a>
+		<a href='awards.php'>Acheivements</a>
+		<a href='papers.php'>Publications</a>
 		<?php 
 			if($login=='OK'){
 				echo "<a href='profile.php'>Profile</a>";
@@ -48,7 +51,7 @@
 	<div id="main" class="main mcard">
 		<div class="position pwd">
 			<div class="left">
-				<h2>Edit Personal Details</h2>
+				<h2>Edit Password</h2>
 			</div>
 			<form action="editformbe.php" class="right" method="POST">
 				<div class="form-group">

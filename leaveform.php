@@ -31,6 +31,9 @@
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href="dashboard.php">Dashboard</a>
+		<a href='events.php'>Events</a>
+		<a href='awards.php'>Acheivements</a>
+		<a href='papers.php'>Publications</a>
 		<a href="profile.php">Profile</a>
 		<a href="loutprocess.php">Logout</a>
 	</div>
