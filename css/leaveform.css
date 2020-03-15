@@ -231,3 +231,8 @@
 #ldelete:hover{
   background: #2ecc71; 
 }
+
+.main .content #salarydiv{
+  color: white;
+  display: none;
+}
