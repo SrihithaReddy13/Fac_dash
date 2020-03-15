@@ -19,8 +19,8 @@
 		$row= mysqli_fetch_array($result);
 		function alert($msg,$goto){
 			echo '<script type="text/javascript">';                                         		
-			echo 'alert('.$msg.');'; 
-			echo 'window.location.href ='.$goto.';';
+			echo 'alert("'.$msg.'");'; 
+			echo 'window.location.href ="'.$goto.'";';
 			echo '</script>';
 		}
 		if ($row['fid'] == $fid) {
@@ -45,23 +45,24 @@
 					$sql = "UPDATE fdbuser SET count='".$count."' WHERE fid=".$fid."";
 					$con->query($sql);
 					if ($count==3){
-						event("3 Failed attempts. 2 More failed attempts will lock your account.","main.php");
+						alert("3 Failed attempts. 2 More failed attempts will lock your account.","main.php");
 						
 					}
 					else if ($count==5){
 						$sql = "UPDATE fdbuser SET locked='Y' WHERE fid=".$fid."";
 						$con->query($sql);
-						event("5 Failed attempts. Account Locked. To get a temporary password, please answer the Security Questions and verify yourself.","lockedout.php");
+						alert("5 Failed attempts. Account Locked. To get a temporary password, please answer the Security Questions and verify yourself.","lockedout.php");
 						
-					}else{	
-						event("Wrong Password. Attempts left='.(5-$count).'","main.php");
+					}else{
+						$x=	5-$count;
+						alert("Wrong Password. Attempts left=$x","main.php");
 					}
 				}
 			}else{
-				event("Account locked. To get a temporary password, please answer the Security Questions and verify yourself.","lockedout.php");
+				alert("Account locked. To get a temporary password, please answer the Security Questions and verify yourself.","lockedout.php");
 			}
 		}else{
-			event("No such user", "main.php");
+			alert("No such user", "main.php");
 		}
 	?>
 </body>
