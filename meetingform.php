@@ -30,6 +30,9 @@
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href="dashboard.php">Dashboard</a>
+		<a href='events.php'>Events</a>
+		<a href='awards.php'>Acheivements</a>
+		<a href='papers.php'>Publications</a>
 		<a href="profile.php">Profile</a>
 		<a href="loutprocess.php">Logout</a>
 	</div>
@@ -60,8 +63,7 @@
 					mysqli_select_db($con,"fac_dash");
 
 
-					if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-						if (!empty($_POST['submit'])){
+					if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['submit'])){
 							$mdate= $_POST['mdate'];
 							$mtime= $_POST['mtime'];
 							$agenda= $_POST['agenda'];
@@ -75,7 +77,7 @@
 								echo 'window.location.href = "meetingform.php";';
 								echo '</script>';
 							}
-							else if ($mtime>='16:00' and $mtime<='9:00'){
+							else if ($mtime>='16:00' && $mtime<='9:00'){
 								echo '<script type="text/javascript">';                                         
 								echo 'alert("Please pick time between 9am to 4pm");'; 
 								echo 'window.location.href = "meetingform.php";';

@@ -37,11 +37,7 @@
 			$sql= "SELECT * FROM secquesans WHERE fid=$fid";
 			$result=mysqli_query($con,$sql);
 			$row=mysqli_fetch_assoc($result);
-			if ($q1==$row['q1']){
-				if ($q2==$row['q2']){
-					if ($q3==$row['q3']){
-						if ($q4==$row['q4']){
-							if ($q5==$row['q5']){
+			if ($q1==$row['q1']) && ($q2==$row['q2']) && ($q3==$row['q3']) && ($q4==$row['q4']) && ($q5==$row['q5']){
 									$temp=rand(0000000000,9999999999);
 									$sql = "UPDATE login SET pwd='".$temp."' WHERE fid=".$fid."";
 									$con->query($sql);

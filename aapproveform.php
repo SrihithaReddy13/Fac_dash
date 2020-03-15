@@ -20,7 +20,7 @@
 		$appttime=$_POST['appttime'];
 		$now = new DateTime();
 		$now= $now->format('Y-m-d');
-		if ($now>$apptdate or $apptstatus=='Approved'){
+		if ($now>$apptdate || $apptstatus=='Approved'){
 			$msg="Cannot be approved anymore";
 			echo "<script type='text/javascript'>alert('$msg');window.location.href='schedule.php';</script>";
 		}else{

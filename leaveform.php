@@ -151,8 +151,37 @@
 					}
 				?>
 			</div>
-			<div id='salarydiv'>
-
+			<div id='salarydiv' class='box'>
+			<?php
+				echo "<h3>Salary Information</h3>";
+				$sqlpersonal= "SELECT * FROM fdbuser WHERE fid=$fid";
+				$resultpersonal=mysqli_query($con,$sqlpersonal);
+				$rowpersonal=mysqli_fetch_assoc($resultpersonal);
+				$sql = "SELECT ltaken,lavailable FROM leaveinfo where fid=$fid";
+				$result = $con->query($sql);
+				$sum=0;
+				if ($result->num_rows > 0) {
+				    while($row = $result->fetch_assoc()) {
+						$sum=$row["ltaken"]+$sum;
+				    }
+				} else {
+				    echo "0 results";
+				}
+				$extra=$sum-27;
+				if ($extra<=0){
+					echo "Leaves Limit not exceeded. Salary remains unaltered.<br>";
+					echo "SALARY=".$rowpersonal["salary"];
+				}else{
+					echo "Leave limit exceeded. Warning! <br>";
+					$original=$rowpersonal["salary"];
+					$daily=round($original/30);
+					echo "Number of Leaves exceeded = ".$extra."</br>";
+					$cut=round($extra*$daily);
+					echo "Salary Cut = ".$cut."<br>";
+					$current=$original-$cut;
+					echo "Current Salary = Rs.".$current;
+				}
+				?>
 			</div>
 		</div>
 	</div>

@@ -20,13 +20,7 @@
 <body>
 	<?php
 		session_start();
-		if (@$_SERVER['HTTP_REFERER']!="http://localhost/project/"){
-			if ($_SESSION['login']=='OK'){
-				$login=$_SESSION['login'];
-			}else{
-				$login='NO';
-			}
-		}
+		$login=$_SESSION['login'];
 	?>
 	<div class="navbar_">
 		<a style="font-size:30px; cursor:pointer; color: white; " onclick="openNav()">&#9776;</a>
@@ -62,13 +56,13 @@
 				<?php
 				echo "<img id='img' src='images/amrita' width='100%'/>";
 				?>
-				<h4 align="center"><i>Campus: Coimbatore</i></h4>
+				<h4 align="center"><em>Campus: Coimbatore</em></h4>
 				<p>.</p>
 			</div>
 		</div>
 		<div class="recent">
 			<div class="acheivements acard gap">
-				<h2 align="center"><b>Acheivements</b></h2>
+				<h2 align="center"><strong>Acheivements</strong></h2>
 				<div class="row">
 					  <div class="col-sm-3">
 					    <div class="card text-center border-dark mb-3 gap-l" style="width: 500px;">
@@ -110,7 +104,7 @@
 				</div>
 			</div>
 			<div class="acheivements acard gap">
-				<h2 align="center"><b>Events/Workshop</b></h2>
+				<h2 align="center"><strong>Events/Workshop</strong></h2>
 				<div class="row">
 					  <div class="col-sm-3">
 					    <div class="card text-center border-dark mb-3 gap-l" style="width: 500px;">

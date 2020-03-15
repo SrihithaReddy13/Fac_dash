@@ -36,9 +36,9 @@
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href="dashboard.php">Dashboard</a>
-		<a href='dashboard.php'>Events</a>
-		<a href='dashboard.php'>Acheivements</a>
-		<a href='dashboard.php'>Publications</a>
+		<a href='events.php'>Events</a>
+		<a href='awards.php'>Acheivements</a>
+		<a href='papers.php'>Publications</a>
 		<a href="profile.php">Profile</a>
 		<a href="loutprocess.php">Logout</a>
 	</div>
@@ -65,6 +65,12 @@
 					<input type='submit' id='sbtbtn' name='submit' value='Go'>
 				</form>
 				<?php
+				function alert($msg,$goto){
+					echo '<script type="text/javascript">';                                         		
+					echo 'alert('.$msg.');'; 
+					echo 'window.location.href ='.$goto;.'';
+					echo '</script>';
+				}
 					if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 						if (!empty($_POST['submit'])){
 							$adate= $_POST['adate'];
@@ -75,25 +81,16 @@
 							$now = new DateTime();
 							$now= $now->format('Y-m-d');
 							if ($adate<$now){
-								echo '<script type="text/javascript">';                                         
-								echo 'alert("Please pick a future date");'; 
-								echo 'window.location.href = "meetingform.php";';
-								echo '</script>';
+								alert("Please pick a future date","meetingform.php");
 							}
-							else if ($atime>='16:00' and $atime<='9:00'){
-								echo '<script type="text/javascript">';                                         
-								echo 'alert("Please pick time between 9am to 4pm");'; 
-								echo 'window.location.href = "meetingform.php";';
-								echo '</script>';
+							else if ($atime>='16:00' && $atime<='9:00'){
+								alert("Please pick time between 9am to 4pm","meetingform.php");
 							}else{
 								$sql = "INSERT INTO appointment(fid,hodid,apptdate, appttime, purpose , apptstatus,aid) VALUES (?,?,?,?,?,?,?)";
 								$stmt = mysqli_prepare($con,$sql);
 								$stmt->bind_param("sssssss", $fid,$hodid,$adate,$atime,$agenda,$status,$aid);
 								$stmt->execute();
-								echo '<script type="text/javascript">';              
-								echo 'alert("Appointment scheduled successfully!");'; 
-								echo 'window.location.href = "schedule.php";';
-								echo '</script>';
+								alert("Appointment scheduled successfully!","schedule.php");
 							}
 						}
 					}

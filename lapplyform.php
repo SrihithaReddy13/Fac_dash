@@ -27,13 +27,32 @@
 		$now = new DateTime();
 		$adate= $now->format('Y-m-d');
 		$status='Pending';
-			
+		$sdatestr = strtotime($sdate); 
+		$edatestr = strtotime($edate);
+		$datediff = $edatestr - $sdatestr;
+		$duration = round($datediff / (60 * 60 * 24));
+		$sql = "SELECT ltaken,lavailable FROM leaveinfo where fid=$fid";
+		$result = $con->query($sql);
+		$sum=0;
+		if ($result->num_rows > 0) {
+		    while($row = $result->fetch_assoc()) {
+				$sum=$row["ltaken"]+$sum;
+			}
+		} else {
+			echo "0 results";
+		}
+		$sum=$sum+$duration;
+		$extra=$sum-27;
+		if $extra>0{
+			echo "<script type='text/javascript'>alert('$msg');window.location.href='leaveform.php';</script>";	
+
+
 		$sql = "INSERT INTO fdbleave(lid,ltype, sdate, edate , adate, reason,lstatus, fid,hodid) VALUES (?,?,?,?,?,?,?,?,?)";
 		$stmt = mysqli_prepare($con,$sql);
 		$stmt->bind_param("sssssssss", $lid,$ltype,$sdate,$edate,$adate,$reason,$status,$fid,$hodid);
 		$stmt->execute();
 		$msg="Leave applied succesfully!";
-		echo "<script type='text/javascript'>alert('$msg');window.location.href='leaveform.php';</script>";
+		echo "<script type='text/javascript'>alert('".$msg."');window.location.href='leaveform.php';</script>";
 	?>
 </body>
 </html>

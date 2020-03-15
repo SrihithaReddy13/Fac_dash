@@ -15,6 +15,12 @@
 		$resultd=mysqli_query($con,$sqld);
 		$rowd=mysqli_fetch_assoc($resultd);
 		$deptid=$rowd['deptid'];
+		function alert($msg,$goto){
+			echo '<script type="text/javascript">';                                         		
+			echo 'alert('.$msg.');'; 
+			echo 'window.location.href ='.$goto;.'';
+			echo '</script>';
+		}
 		if(isset($_POST['pwdsubbtn'])){
 			$opwd=$_POST['opwd'];
 			$conopwd=$_POST['conopwd'];
@@ -25,15 +31,12 @@
 				if ($opwd==$row['pwd']){
 					$sql = "UPDATE login SET pwd='".$npwd."' WHERE fid=".$fid."";
 					$con->query($sql);
-					echo '<script type="text/javascript">'; 
-					echo 'alert("Password Updated");'; 
-					echo 'window.location.href = "main.php";';
-					echo '</script>';
+					alert("Password Updated","main.php");
 				}else{
-					echo "<script type='text/javascript'>alert('Wrong Password');window.location.href='editform.php';</script>";
+					alert('Wrong Password','editform.php');
 				}
 			}else{
-				echo "<script type='text/javascript'>alert('Passwords do not match');window.location.href='editform.php';</script>";
+				alert('Passwords do not match','editform.php');
 			}
 		}
 		if (isset($_POST['psubbtn'])){
@@ -49,7 +52,7 @@
 			$con->query($sql);
 			$sql = "UPDATE fdbuser SET phone='".$phone."' WHERE fid=".$fid."";
 			$con->query($sql);
-			echo "<script type='text/javascript'>alert('Updated Successfully');window.location.href='editform.php';</script>";
+			alert('Updated Successfully','editform.php');
 		}
 		if (isset($_POST['pubsubbtn'])){
 			$title = $_POST['title'];
@@ -63,7 +66,7 @@
 			$stmt = mysqli_prepare($con,$sql);
 			$stmt->bind_param("sssssss", $pid,$title,$link,$date,$fid,$pubin,$visibility);
 			$stmt->execute();
-			echo "<script type='text/javascript'>alert('Added Successfully');window.location.href='editform.php';</script>";
+			alert('Added Successfully','editform.php');
 		}
 		if (isset($_POST['phideshow'])){
 			$pid=$_POST['pid'];
@@ -75,7 +78,7 @@
 			}
 			$sql = "UPDATE papers SET visibility='".$visibility."' WHERE fid=".$fid." AND pid=".$pid."";
 			$con->query($sql);
-			echo "<script type='text/javascript'>alert('Updated Successfully');window.location.href='editform.php';</script>";
+			alert('Updated Successfully','editform.php');
 		}
 		if (isset($_POST['pubsubbtn'])){
 			$title = $_POST['title'];
@@ -88,7 +91,7 @@
 			$stmt = mysqli_prepare($con,$sql);
 			$stmt->bind_param("sssssss", $pid,$title,$link,$date,$fid,$pubin,$visibility);
 			$stmt->execute();
-			echo "<script type='text/javascript'>alert('Added Successfully');window.location.href='editform.php';</script>";
+			alert('Added Successfully','editform.php');
 		}
 		if (isset($_POST['phideshow'])){
 			$pid=$_POST['pid'];
@@ -100,7 +103,8 @@
 			}
 			$sql = "UPDATE papers SET visibility='".$visibility."' WHERE fid=".$fid." AND pid=".$pid."";
 			$con->query($sql);
-			echo "<script type='text/javascript'>alert('Updated Successfully');window.location.href='editform.php';</script>";
+			alert('Updated Successfully','editform.php');
+
 		}
 		if (isset($_POST['achsubbtn'])){
 			$aname = $_POST['aname'];
@@ -111,7 +115,7 @@
 			$stmt = mysqli_prepare($con,$sql);
 			$stmt->bind_param("sssss", $aid,$aname,$adate,$fid,$visibility);
 			$stmt->execute();
-			echo "<script type='text/javascript'>alert('Added Successfully');window.location.href='editform.php';</script>";
+			alert('Added Successfully','editform.php');
 		}
 		if (isset($_POST['achhideshow'])){
 			$aid=$_POST['aid'];
@@ -123,7 +127,7 @@
 			}
 			$sql = "UPDATE acheivement SET visibility='".$visibility."' WHERE fid=".$fid." AND aid=".$aid."";
 			$con->query($sql);
-			echo "<script type='text/javascript'>alert('Updated Successfully');window.location.href='editform.php';</script>";
+			alert('Updated Successfully','editform.php');
 		}
 		if (isset($_POST['esubbtn'])){
 			$ename = $_POST['ename'];
@@ -136,7 +140,8 @@
 			$stmt = mysqli_prepare($con,$sql);
 			$stmt->bind_param("sssssss", $wid,$ename,$edate,$eplace,$int,$fid,$visibility);
 			$stmt->execute();
-			echo "<script type='text/javascript'>alert('Added Successfully');window.location.href='editform.php';</script>";
+
+			alert('Added Successfully','editform.php');
 		}
 		if (isset($_POST['whideshow'])){
 			$wid=$_POST['wid'];
@@ -148,7 +153,8 @@
 			}
 			$sql = "UPDATE workshop SET visibility='".$visibility."' WHERE wid=".$wid." AND fid=".$fid."";
 			$con->query($sql);
-			echo "<script type='text/javascript'>alert('Updated Successfully');window.location.href='editform.php';</script>";
+
+			alert('Updated Successfully','editform.php');
 		}
 		if (isset($_POST['osubbtn'])){
 			$dob = $_POST['dob'];
@@ -160,7 +166,7 @@
 			$con->query($sql);
 			$sql = "UPDATE otherinfo SET bloodgrp='".$bg."' WHERE fid=".$fid."";
 			$con->query($sql);
-			echo "<script type='text/javascript'>alert('Updated Successfully');window.location.href='editform.php';</script>";
+			alert('Updated Successfully','editform.php');
 		}
 	?>
 </body>

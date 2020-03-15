@@ -20,7 +20,7 @@
 		$appttime=$_POST['appttime'];
 		$now = new DateTime();
 		$now= $now->format('Y-m-d');
-		if ($now>$apptdate or $apptstatus=='Denied'){
+		if ($now>$apptdate || $apptstatus=='Denied'){
 			$msg="Cannot be denied anymore";
 			echo "<script>(alert('$msg'));window.location.href='schedule.php';</script>";
 		}else{

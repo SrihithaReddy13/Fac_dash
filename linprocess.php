@@ -17,7 +17,12 @@
 
 		$result = mysqli_query($con,"select * from login where fid='$fid'") or die("Failed to query database".mysqli_error($con));
 		$row= mysqli_fetch_array($result);
-
+		function alert($msg,$goto){
+			echo '<script type="text/javascript">';                                         		
+			echo 'alert('.$msg.');'; 
+			echo 'window.location.href ='.$goto.';';
+			echo '</script>';
+		}
 		if ($row['fid'] == $fid) {
 			$result = mysqli_query($con,"select * from fdbuser where fid='$fid'") or die("Failed to query database".mysqli_error($con));
 			$row= mysqli_fetch_array($result);
@@ -41,36 +46,23 @@
 					$sql = "UPDATE fdbuser SET count='".$count."' WHERE fid=".$fid."";
 					$con->query($sql);
 					if ($count==3){
-						echo '<script type="text/javascript">'; 
-						echo 'alert("3 Failed attempts. 2 More failed attempts will lock your account.");'; 
-						echo 'window.location.href = "main.php";';
-						echo '</script>';
+						event("3 Failed attempts. 2 More failed attempts will lock your account.","main.php");
+						
 					}
 					else if ($count==5){
 						$sql = "UPDATE fdbuser SET locked='Y' WHERE fid=".$fid."";
 						$con->query($sql);
-						echo '<script type="text/javascript">'; 
-						echo 'alert("5 Failed attempts. Account Locked. To get a temporary password, please answer the Security Questions and verify yourself.");'; 
-						echo 'window.location.href = "lockedout.php";';
-						echo '</script>';
+						event("5 Failed attempts. Account Locked. To get a temporary password, please answer the Security Questions and verify yourself.","lockedout.php");
+						
 					}else{	
-						echo '<script type="text/javascript">'; 
-						echo 'alert("Wrong Password. Attempts left='.(5-$count).'");'; 
-						echo 'window.location.href = "main.php";';
-						echo '</script>';
+						event("Wrong Password. Attempts left='.(5-$count).'","main.php");
 					}
 				}
 			}else{
-				echo '<script type="text/javascript">'; 
-				echo 'alert("Account locked. To get a temporary password, please answer the Security Questions and verify yourself.");'; 
-				echo 'window.location.href = "lockedout.php";';
-				echo '</script>';
+				event("Account locked. To get a temporary password, please answer the Security Questions and verify yourself.","lockedout.php");
 			}
 		}else{
-			echo '<script type="text/javascript">'; 
-			echo 'alert("No such user");'; 
-			echo 'window.location.href = "main.php";';
-			echo '</script>';
+			event("No such user", "main.php");
 		}
 	?>
 </body>
