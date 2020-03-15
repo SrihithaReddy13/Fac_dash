@@ -43,9 +43,10 @@
 		}
 		$sum=$sum+$duration;
 		$extra=$sum-27;
-		if $extra>0{
-			echo "<script type='text/javascript'>alert('$msg');window.location.href='leaveform.php';</script>";	
-
+		if ($extra>0){
+			$msg="Leave limit exceeded with this leave!";
+			echo "<script type='text/javascript'>alert('".$msg."');</script>";
+		}
 
 		$sql = "INSERT INTO fdbleave(lid,ltype, sdate, edate , adate, reason,lstatus, fid,hodid) VALUES (?,?,?,?,?,?,?,?,?)";
 		$stmt = mysqli_prepare($con,$sql);
