@@ -36,7 +36,6 @@
 					$_SESSION['acctype']=$row['acctype'];
 					$_SESSION['deptid']=$row['deptid'];
 					$_SESSION["login"] = "OK";
-					$_SESSION['first']='N';
 					$count=0;
 					$sql = "UPDATE fdbuser SET count='".$count."' WHERE fid=".$fid."";
 					$con->query($sql);
