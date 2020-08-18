@@ -10,3 +10,5 @@ RECOMMEND TO READ "FACULTY DASHBOARD SYSTEM DOCUMENTATION" First.
 The first page to display in the application is firsttime.php
 
 THANK YOU
+
+Full code also available on  - https://github.com/SrihithaReddy13/Fac_dash.git
