@@ -2,7 +2,7 @@
 Thirs year Software Engineering project
 A simple easy to use Online faculty dashboard system for a college. 
 Front end uses HTML, CSS, BootStrap, Javascript etc
-Back end is made using PHPMyAdmin,PHP and MySQL.  
+Back end is made using PHPMyAdmin, PHP and MySQL.  
 The team followed Agile software development approach to develop this application.
 
 
