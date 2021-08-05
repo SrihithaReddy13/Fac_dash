@@ -1,5 +1,5 @@
 # Fac_dash
-Thirs year Software Engineering project
+B-Tech Third year Software Engineering project
 A simple easy to use Online faculty dashboard system for a college. 
 Front end uses HTML, CSS, BootStrap, Javascript etc
 Back end is made using PHPMyAdmin, PHP and MySQL.  
